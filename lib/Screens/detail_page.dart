@@ -103,11 +103,15 @@ class _Detail_ScreenState extends State<Detail_Screen> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          data['title'],
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          width: 250,
+                          child: Text(
+                            data['title'],
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         Spacer(),

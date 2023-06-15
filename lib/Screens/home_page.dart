@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? select;
   Color mycolor = Colors.black;
   @override
   Widget build(BuildContext context) {
@@ -39,30 +40,79 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                DropdownButton(
+                  hint: Text("Select Category"),
+                  value: select,
+                  items: Cat.map(
+                    (e) => DropdownMenuItem(
+                      child: Text(e),
+                      value: e,
+                    ),
+                  ).toList(),
+                  onChanged: (val) {
+                    setState(
+                      () {
+                        select = val;
+                      },
+                    );
+                  },
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Visibility(
+                  visible: select != null,
+                  child: ActionChip(
+                    avatar: Icon(Icons.clear),
+                    label: Text("Clear"),
+                    onPressed: () {
+                      setState(() {
+                        select = null;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 20,
             ),
-            bhavin(category: "SmartPhones", Productname: "smartphones"),
-            bhavin(category: "Laptops", Productname: "laptops"),
-            bhavin(category: "Fragrances", Productname: "fragrances"),
-            bhavin(category: "Skincare", Productname: "skincare"),
-            bhavin(category: "Groceries", Productname: "groceries"),
-            bhavin(category: "Home-Decoration", Productname: "home-decoration"),
-            bhavin(category: "Furniture", Productname: "furniture"),
-            bhavin(category: "Tops", Productname: "tops"),
-            bhavin(category: "Womens-Dresses", Productname: "womens-dresses"),
-            bhavin(category: "Womens-Shoes", Productname: "womens-shoes"),
-            bhavin(category: "Mens-Shirts", Productname: "mens-shirts"),
-            bhavin(category: "Mens-Shoes", Productname: "mens-shoes"),
-            bhavin(category: "Mens-Watches", Productname: "mens-watches"),
-            bhavin(category: "Womens-Watches", Productname: "womens-watches"),
-            bhavin(category: "Womens-Bags", Productname: "womens-bags"),
-            bhavin(
-                category: "Womens-Jewellery", Productname: "womens-jewellery"),
-            bhavin(category: "Sunglasses", Productname: "sunglasses"),
-            bhavin(category: "Automotive", Productname: "automotive"),
-            bhavin(category: "Motorcycle", Productname: "motorcycle"),
-            bhavin(category: "Lighting", Productname: "smartphones"),
+            (select != null)
+                ? bhavin(category: select!, Productname: select!)
+                : Column(children: [
+                    bhavin(category: "SmartPhones", Productname: "smartphones"),
+                    bhavin(category: "Laptops", Productname: "laptops"),
+                    bhavin(category: "Fragrances", Productname: "fragrances"),
+                    bhavin(category: "Skincare", Productname: "skincare"),
+                    bhavin(category: "Groceries", Productname: "groceries"),
+                    bhavin(
+                        category: "Home Decoration",
+                        Productname: "home-decoration"),
+                    bhavin(category: "Furniture", Productname: "furniture"),
+                    bhavin(category: "Tops", Productname: "tops"),
+                    bhavin(
+                        category: "Womens Dresses",
+                        Productname: "womens-dresses"),
+                    bhavin(
+                        category: "Womens Shoes", Productname: "womens-shoes"),
+                    bhavin(category: "Mens Shirts", Productname: "mens-shirts"),
+                    bhavin(category: "Mens Shoes", Productname: "mens-shoes"),
+                    bhavin(
+                        category: "Mens Watches", Productname: "mens-watches"),
+                    bhavin(
+                        category: "Womens Watches",
+                        Productname: "womens-watches"),
+                    bhavin(category: "Womens Bags", Productname: "womens-bags"),
+                    bhavin(
+                        category: "Womens Jewellery",
+                        Productname: "womens-jewellery"),
+                    bhavin(category: "Sunglasses", Productname: "sunglasses"),
+                    bhavin(category: "Automotive", Productname: "automotive"),
+                    bhavin(category: "Motorcycle", Productname: "motorcycle"),
+                    bhavin(category: "Lighting", Productname: "lighting"),
+                  ]),
           ],
         ),
       ),
