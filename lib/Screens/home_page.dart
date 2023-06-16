@@ -1,8 +1,6 @@
-// import 'package:e_com/Screens/detail_page.dart';
 import 'package:ecom_cf_2/utils/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../utils/all_product_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  RangeValues range = RangeValues(1, 3000);
   String? select;
   Color mycolor = Colors.black;
   @override
@@ -76,11 +75,42 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            Visibility(
+              visible: select != null,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text("\$ ${range.start.toInt()}"),
+                  ),
+                  Expanded(
+                    flex: 6,
+                    child: RangeSlider(
+                      divisions: 3000,
+                      min: 1,
+                      max: 3000,
+                      onChanged: (val) {
+                        setState(() {
+                          range = val;
+                        });
+                      },
+                      values: range,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text("\$ ${range.end.toInt()}"),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
             (select != null)
-                ? bhavin(category: select!, Productname: select!)
+                ? bhavin(
+                    category: select!,
+                    Productname: select!,
+                    min: range.start,
+                    max: range.end)
                 : Column(children: [
                     bhavin(category: "SmartPhones", Productname: "smartphones"),
                     bhavin(category: "Laptops", Productname: "laptops"),

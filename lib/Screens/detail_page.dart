@@ -41,11 +41,13 @@ class _Detail_ScreenState extends State<Detail_Screen> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('cart_page');
+        },
         backgroundColor: Colors.red,
         child: Icon(
           Icons.shopping_cart_checkout,
-          size: 35,
+          size: 25,
         ),
       ),
       body: Container(
