@@ -1,3 +1,4 @@
+import 'package:ecom_cf_2/utils/all_product_list.dart';
 import 'package:flutter/material.dart';
 
 class Detail_Screen extends StatefulWidget {
@@ -42,7 +43,12 @@ class _Detail_ScreenState extends State<Detail_Screen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('cart_page');
+          if (!addedProducts.contains(data)) {
+            addedProducts.add(data);
+          }
+          Navigator.of(context).pushNamed(
+            'cart_page',
+          );
         },
         backgroundColor: Colors.red,
         child: Icon(
