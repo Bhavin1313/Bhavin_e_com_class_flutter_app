@@ -89,26 +89,48 @@ class _Cart_PageState extends State<Cart_Page> {
                                             bottomRight: Radius.circular(30),
                                           ),
                                         ),
-                                        child: Column(
-                                          children: [
-                                            Text("${e['price']}"),
-                                            GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  addedProducts.remove(e);
-                                                  TotalPrice -=
-                                                      e['price'] as int;
-                                                });
-                                              },
-                                              child: Text(
-                                                "Delete",
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                "${e['title']}",
+                                                overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                    color: Colors.redAccent),
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 20,
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                "\$ ${e['price']}",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    addedProducts.remove(e);
+                                                    TotalPrice -=
+                                                        e['price'] as int;
+                                                  });
+                                                },
+                                                child: Text(
+                                                  "Delete",
+                                                  style: TextStyle(
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      color: Colors.redAccent,
+                                                      fontSize: 20),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -133,7 +155,33 @@ class _Cart_PageState extends State<Cart_Page> {
               alignment: Alignment.center,
               width: double.infinity,
               color: Colors.redAccent,
-              child: Text("${TotalPrice}"),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Totle Price : ",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    "\$ ${TotalPrice}",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
